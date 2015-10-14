@@ -1,5 +1,17 @@
-{% extends "layout.tmpl" %}
+{% extends "vzhled/layout.tmpl" %}
 
-{% block title %}
-sadasd
+{% block title %}sadasd{% endblock %}
+{% block nadpis %}Přehled článků{% endblock %}
+{% block popis %}Progres bary ukazují aktuální napětí na bateriích{% endblock %}
+
+{% block telo %}
+    {% for item in pole %}
+        <p>Článek {{ item[0] }}.</p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar"
+            aria-valuenow="1000" aria-valuemin="0" aria-valuemax="4000" style="width:{{ (item[1]/3600)*100 }}%">{{ item[1]/1000 }}%</div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
+

@@ -1,5 +1,7 @@
 __author__ = 'mat'
 from flask import Flask, render_template, url_for
+from databaze import napeti_pole as napeti
+from databaze import napln_db
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,7 +12,9 @@ def index():
 
 @app.route('/clanky')
 def clanky():
-    return render_template('clanky.tmpl')
+    napln_db()
+    pole = napeti()
+    return render_template('clanky.tmpl',pole=pole)
 
 @app.route('/dokumentace')
 def dokumantace():
